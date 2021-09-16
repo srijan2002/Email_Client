@@ -8,25 +8,13 @@
  *
  * @author srijan
  */
-import javax.mail.*;
+ 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.activation.*;
-import javax.mail.internet.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Properties;
+import java.util.Properties; 
+ 
 public class email extends javax.swing.JFrame implements MouseListener {
     
     String path="";
@@ -179,9 +167,9 @@ public class email extends javax.swing.JFrame implements MouseListener {
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(175, 175, 175)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
+                        .addGap(412, 412, 412)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addContainerGap(483, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,182 +268,35 @@ public class email extends javax.swing.JFrame implements MouseListener {
         });
     }
      public void mouseClicked(MouseEvent e) {  
+         
       if(e.getSource()==jPanel3){
              jLabel5.setText("Sending...");
              jLabel5.paintImmediately(jLabel5.getVisibleRect());
-           String to = jTextField1.getText();//change accordingly
-
-      // Sender's email ID needs to be mentioned
-      String from = "srjnmajumdar8@gmail.com";//change accordingly
-      final String username = "srjnmajumdar8@gmail.com";//change accordingly
-      final String password = "kxlpwrzkevigiciw";//change accordingly
-
-      // Assuming you are sending email through relay.jangosmtp.net
-      String host = "smtp.gmail.com";
-
-      Properties props = new Properties();
-      props.put("mail.smtp.auth", "true");
-      props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-      props.put("mail.smtp.starttls.enable", "true");
-      props.put("mail.smtp.host", host);
-      props.put("mail.smtp.port", "587");
-
-      // Get the Session object.
-      Session session = Session.getInstance(props,
-      new javax.mail.Authenticator() {
-         protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(username, password);
-         }
-      });
-
-      try {
-          
-         // Create a default MimeMessage object.
-         Message message = new MimeMessage(session);
-
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
-
-         // Set To: header field of the header.
-         message.setRecipients(Message.RecipientType.TO,
-         InternetAddress.parse(to));
-
-         // Set Subject: header field
-         message.setSubject(jTextField2.getText());
-
-         // Now set the actual message
-         
-         if(path!=""){
-             BodyPart messageBodyPart = new MimeBodyPart();
-
-            // Fill the message
-            messageBodyPart.setText(jTextField3.getText());
-
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-
-            // Set text message part
-            multipart.addBodyPart(messageBodyPart);
-             MimeBodyPart file = new MimeBodyPart();
-            file.attachFile(path);
-             
-             multipart.addBodyPart(file);
-
-            // Send the complete message parts
-            message.setContent(multipart);
-             
-         }
-         else
-             message.setText(jTextField3.getText());
-
-         // Send message
-         Transport.send(message);
-          
+           String to = jTextField1.getText(); 
+           String from = "srjnmajumdar8@gmail.com";
+           String password = "kxlpwrzkevigiciw";
+           
+           
+              send_email ob = new send_email(to,from,from,password,jTextField2.getText(),jTextField3.getText(),path);
+              ob.sendEmail();
+              
          jLabel5.setText("Sent message successfully....");
          jLabel5.paintImmediately(jLabel5.getVisibleRect());
 
-      } catch (MessagingException ev) {
-            throw new RuntimeException(ev);
-      }
       }
       
       if(e.getSource()==jPanel4){
-//          final String username = "srjnmajumdar8@gmail.com";//change accordingly
-//      final String password = "kxlpwrzkevigiciw";
-//           // Recipient's email ID needs to be mentioned.
-//        String to = jTextField1.getText();
-//
-//        // Sender's email ID needs to be mentioned
-//        String from = "srjnmajumdar8@gmail.com";
-//
-//        // Assuming you are sending email from localhost
-//        String host = "smtp.gmail.com";
-//
-//        // Get system properties
-//            Properties props = new Properties();
-//      props.put("mail.smtp.auth", "true");
-//      props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-//      props.put("mail.smtp.starttls.enable", "true");
-//      props.put("mail.smtp.host", host);
-//      props.put("mail.smtp.port", "587");
-//
-//        // Get the default Session object.
-//         Session session = Session.getInstance(props,
-//      new javax.mail.Authenticator() {
-//         protected PasswordAuthentication getPasswordAuthentication() {
-//            return new PasswordAuthentication(username, password);
-//         }
-//      });
-//        try
-//        {
-            
-            JFileChooser chooser = new JFileChooser();
-            int res = chooser.showOpenDialog(null);
-            if(res==JFileChooser.APPROVE_OPTION)
-                path = chooser.getSelectedFile().getAbsolutePath();
-            
-            jLabel7.setText(path);
-            // Create a default MimeMessage object.
-//            MimeMessage message = new MimeMessage(session);
-//
-//            // Set From: header field of the header.
-//            message.setFrom(new InternetAddress(from));
-//
-//            // Set To: header field of the header.
-//            message.addRecipient(Message.RecipientType.TO,
-//                              new InternetAddress(to));
-//
-//            // Set Subject: header field
-//            message.setSubject(jTextField2.getText());
-//
-//            // Create the message part 
-//            BodyPart messageBodyPart = new MimeBodyPart();
-//
-//            // Fill the message
-//            messageBodyPart.setText(jTextField3.getText());
-//
-//            // Create a multipar message
-//            Multipart multipart = new MimeMultipart();
-//
-//            // Set text message part
-//            multipart.addBodyPart(messageBodyPart);
-//
-//            // Part two is attachment
-//            messageBodyPart = new MimeBodyPart();
-//            MimeBodyPart file = new MimeBodyPart();
-//            file.attachFile(path);
-////            String filename = "file.txt";
-////            DataSource source = new FileDataSource(filename);
-////            messageBodyPart.setDataHandler(new DataHandler());
-//            messageBodyPart.setFileName("RESUME");
-//            multipart.addBodyPart(file);
-//
-//            // Send the complete message parts
-//            message.setContent(multipart);
-//
-//            // Send message
-//            Transport.send(message);
-//            jLabel5.setText("Sent message successfully....");
-//        }
-//        catch (MessagingException mex) 
-//        {
-//            mex.printStackTrace();
-//        }
+ 
+           file_picker ob1 = new file_picker();
+           path = ob1.get_path();
+           jLabel7.setText(path);
       }
        
     }  
-    public void mouseEntered(MouseEvent e) {  
-        
-    }  
-    public void mouseExited(MouseEvent e) {  
-           
-    }  
-    public void mousePressed(MouseEvent e) {  
-        
-    }  
-    public void mouseReleased(MouseEvent e) {  
-       
-    } 
+    public void mouseEntered(MouseEvent e) {}  
+    public void mouseExited(MouseEvent e) {}  
+    public void mousePressed(MouseEvent e) {}  
+    public void mouseReleased(MouseEvent e) {} 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
