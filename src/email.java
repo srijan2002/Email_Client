@@ -19,12 +19,13 @@ import javax.mail.*;
  
 public class email extends javax.swing.JFrame implements MouseListener {
     
-    String path="";  String name = "";   
+    String path="";  String name = "";   String USER; String PASS;
 
     /**
      * Creates new form email
      */
-    public email() {
+    public email(String a, String b) {
+        USER=a;PASS=b;
         initComponents();
         jPanel3.addMouseListener(this);
         jPanel4.addMouseListener(this);
@@ -198,7 +199,7 @@ public class email extends javax.swing.JFrame implements MouseListener {
                             .addComponent(jTextField2))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 887, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 875, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +210,7 @@ public class email extends javax.swing.JFrame implements MouseListener {
                                 .addGap(175, 175, 175)))))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +312,7 @@ public class email extends javax.swing.JFrame implements MouseListener {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new email().setVisible(true);
+//                new email().setVisible(true);
             }
         });
     }
@@ -321,8 +322,8 @@ public class email extends javax.swing.JFrame implements MouseListener {
              jLabel5.setText("Sending...");
              jLabel5.paintImmediately(jLabel5.getVisibleRect());
            String to = jTextField1.getText(); 
-           String from = "srjnmajumdar8@gmail.com";
-           String password = "kxlpwrzkevigiciw";
+           String from = USER;
+           String password = PASS;
               send_email ob = new send_email(to,from,from,password,jTextField2.getText(),jTextField3.getText(),path);
               ob.sendEmail();
          jLabel5.setText("Sent message successfully....");
@@ -341,19 +342,20 @@ public class email extends javax.swing.JFrame implements MouseListener {
           get_email mail = new get_email();
           
           String data[]=new String[30];
-            data = mail.downloadEmails("imap", "imap.gmail.com", "993", "srjnmajumdar8@gmail.com", "kxlpwrzkevigiciw");
+            data = mail.downloadEmails("imap", "imap.gmail.com", "993", USER, PASS);
 //             
             DefaultListModel model = new DefaultListModel();
           for(int i=0;i<data.length;i++){
              if(data[i]==null) break;
-           model.addElement(data[i]);   // build defaultlistmodel
+           model.addElement(data[i]);
+           jList2.setModel(model); // build defaultlistmodel
             }
-          jList2.setModel(model);   
+            
       }
       
       if(e.getSource()==jList2){
            get_email g = new get_email();
-          String res[] = g.getMail("imap", "imap.gmail.com", "993", "srjnmajumdar8@gmail.com", "kxlpwrzkevigiciw",jList2.getSelectedIndex());
+          String res[] = g.getMail("imap", "imap.gmail.com", "993", USER, PASS,jList2.getSelectedIndex());
           
           mail_detail mail = new mail_detail(res[0],res[1]);
           mail.setVisible(true);

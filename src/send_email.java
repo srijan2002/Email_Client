@@ -26,7 +26,6 @@ public class send_email {
     
     public void sendEmail(){
         String host = "smtp.gmail.com";
-       System.out.println(body);
       Properties props = new Properties();
       props.put("mail.smtp.auth", "true");
       props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
