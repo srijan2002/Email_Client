@@ -1,3 +1,5 @@
+package ms;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,6 +26,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.InternetAddress;
+import java.io.*;
  
 public class get_email {
     public Properties getServerProperties(String protocol, String host,
@@ -87,9 +90,12 @@ public class get_email {
                   if (msg.isMimeType("text/plain")) {
                       body = msg.getContent().toString();
                   
-                    } else if (msg.isMimeType("multipart/*")) {
+                    } 
+                  if (msg.isMimeType("multipart/*")) {
+                       try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
                    body = getTextFromMimeMultipart(mimeMultipart);
+                       }catch(IOException e){}
                        }
                     result[0]=subject;   result[1]=body;
                     break;
@@ -113,14 +119,12 @@ public class get_email {
             String userName, String password) {
          String result[] = new String[30];
         Properties properties = getServerProperties(protocol, host, port);
-        Session session = Session.getDefaultInstance(properties);
- 
+        Session session = Session.getDefaultInstance(properties); 
         try {
           
             // connects to the message store
             Store store = session.getStore(protocol);
             store.connect(userName, password);
- 
             // opens the inbox folder
             Folder folderInbox = store.getFolder("[Gmail]/All Mail");
             folderInbox.open(Folder.READ_WRITE);
@@ -174,8 +178,10 @@ public class get_email {
     public String getTextFromMimeMultipart(MimeMultipart mimeMultipart)  throws MessagingException{
     String result = "";
     int count = mimeMultipart.getCount();
-    for (int i = 0; i < count; i++) {
+  try{
+        for (int i = 0; i < count; i++) {
         BodyPart bodyPart = mimeMultipart.getBodyPart(i);
+       
         if (bodyPart.isMimeType("text/plain")) {
             result = result  + bodyPart.getContent();
             break; // without break same text appears twice in my tests
@@ -186,6 +192,7 @@ public class get_email {
             result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
         }
     }
+  }catch(IOException e){}
     return result;
 }
 }

@@ -1,3 +1,5 @@
+package ms;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,6 +21,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.sql.*;
 
 public class login extends javax.swing.JFrame implements MouseListener {
 
@@ -116,7 +119,7 @@ public class login extends javax.swing.JFrame implements MouseListener {
         );
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
-        jLabel2.setText("Send");
+        jLabel2.setText("Submit");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,6 +210,7 @@ public class login extends javax.swing.JFrame implements MouseListener {
         });
     }
     public void mouseClicked(MouseEvent e){
+        
         jLabel5.setText("");
               jLabel5.paintImmediately(jLabel5.getVisibleRect());
    Properties properties = getServerProperties("imap", "imap.gmail.com", "993");
