@@ -18,6 +18,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JFileChooser;
+import java.io.*;
 public class send_email {
     
     String to,from,username,password,sub,body;  String path="";
@@ -91,6 +92,8 @@ public class send_email {
 
       } catch (MessagingException ev) {
             throw new RuntimeException(ev);
+      }catch (IOException e) {
+             
       }
       }
       

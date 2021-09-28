@@ -27,6 +27,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.InternetAddress;
 import java.io.*;
+import ms.email;
  
 public class get_email {
     public Properties getServerProperties(String protocol, String host,
@@ -70,16 +71,25 @@ public class get_email {
             // connects to the message store
             Store store = session.getStore(protocol);
             store.connect(userName, password);
- 
+               
             // opens the inbox folder
             Folder folderInbox = store.getFolder("[Gmail]/All Mail");
             folderInbox.open(Folder.READ_WRITE);
  
             // fetches new messages from server
-            Message[] messages = folderInbox.getMessages(); 
+//            Message[] messages = folderInbox.getMessages(); 
+            int end = folderInbox.getMessageCount();
+            int MAX_MESSAGES = 30;
+            int start = end - MAX_MESSAGES + 1;
+            Message messages[] = folderInbox.getMessages(start, end);
+			
+			// Reverse the ordering so that the latest comes out first
+//			Message messageReverse[] = reverseMessageOrder(messages);
+            
+            
              int n = messages.length;
             int c=-1;
-            for (int i = n-1; i>=n-30; i--) {
+            for (int i = n-1; i>=0; i--) {
                 c++;
                 if(c==index){
                     Message msg = messages[i];
@@ -111,7 +121,9 @@ public class get_email {
         } catch (MessagingException ex) {
             System.out.println("Could not connect to the message store");
             ex.printStackTrace();
+        } catch (IOException ex){
         }
+        
        return result;
     }
     
