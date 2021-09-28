@@ -58,7 +58,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 196, 234));
+        jPanel1.setBackground(new java.awt.Color(217, 248, 254));
 
         jList2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jScrollPane2.setViewportView(jList2);
