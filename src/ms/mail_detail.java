@@ -4,6 +4,7 @@ package ms;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.*;
+import javax.swing.DefaultListModel;
 import ms.StringConstants;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +17,7 @@ import ms.StringConstants;
  * @author srijan
  */
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
-      String sub=""; String body=""; String fro="";
+      String sub=""; String body=""; String fro=""; int length=0;
     /**
      * Creates new form mail_detail
      */
@@ -208,6 +209,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
             }
         });
     }
+    
     public void mouseClicked(MouseEvent e) {
          
         try{  
@@ -215,18 +217,68 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
             Connection con=DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);  
  
      Statement stmt=con.createStatement();  
-     ResultSet rs=stmt.executeQuery("select * from Starred");  
+     ResultSet rs=stmt.executeQuery("select * from Star");  
 //      while(rs.next())  
-//      System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-        String sqlInsert = "INSERT INTO Starred (name,sub,body) VALUES ( '" + fro + "', '" + sub + "', '" + body + "' )";
+//      System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+        body = body.replace("'", "\\'");
+//         System.out.println(body);
+           if(getList()){
+                String sqlInsert = "INSERT INTO Star (name,sub,body)" + "VALUES ('"+ fro+"', '"+sub+"', '"+body+"')";
          int countInserted = stmt.executeUpdate(sqlInsert);
             if(countInserted != 0){
                  jLabel2.setText("Email is Starred");
             }
                
+           }
+           else
+             jLabel2.setText("Email is already Starred");  
       con.close();  
        }
         catch(Exception event){ System.out.println(event);}   
+    }
+    public void getLength(){
+        try{
+              Class.forName("com.mysql.cj.jdbc.Driver"); 
+               Connection con=DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);  
+            Statement stmt1=con.createStatement();
+            ResultSet count = stmt1.executeQuery("select count(*) from Star");
+               while(count.next()){
+             length = count.getInt("count(*)");
+                 }
+            System.out.println(length);
+          con.close();
+        }catch(Exception event){
+            System.out.println(event);
+        }
+    }
+    public boolean getList(){
+        getLength();
+           DefaultListModel model = new DefaultListModel();
+           try{  
+          Class.forName("com.mysql.cj.jdbc.Driver");  
+           Connection con=DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);  
+            Statement stmt=con.createStatement();  ResultSet rs=stmt.executeQuery("select * from Star");
+             
+           String sub1[] = new String[length];
+             
+            String body1[] = new String[length]; int i=0;
+            while(rs.next())  {
+             
+            sub1[i]=rs.getString(2); body1[i]=rs.getString(3);
+            if(sub.equals(sub1[i]) && body.equals(body1[i])){
+                return false;
+            }
+            i++;
+            }
+            
+            
+         
+      con.close();  
+       }
+       catch(Exception event){
+            System.out.println(event);
+       } 
+        return true;
     }
     
     public void mouseEntered(MouseEvent e) {}  

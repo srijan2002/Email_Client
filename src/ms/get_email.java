@@ -77,11 +77,11 @@ public class get_email {
             folderInbox.open(Folder.READ_WRITE);
  
             // fetches new messages from server
-//            Message[] messages = folderInbox.getMessages(); 
-            int end = folderInbox.getMessageCount();
-            int MAX_MESSAGES = 30;
-            int start = end - MAX_MESSAGES + 1;
-            Message messages[] = folderInbox.getMessages(start, end);
+            Message[] messages = folderInbox.getMessages(); 
+//            int end = folderInbox.getMessageCount();
+//            int MAX_MESSAGES = 30;
+//            int start = end - MAX_MESSAGES + 1;
+//            Message messages[] = folderInbox.getMessages(start, end);
 			
 			// Reverse the ordering so that the latest comes out first
 //			Message messageReverse[] = reverseMessageOrder(messages);
@@ -89,7 +89,7 @@ public class get_email {
             
              int n = messages.length;
             int c=-1;
-            for (int i = n-1; i>=0; i--) {
+            for (int i = n-1; i>=n-30; i--) {
                 c++;
                 if(c==index){
                     Message msg = messages[i];
