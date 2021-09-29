@@ -216,11 +216,10 @@ public class starred extends javax.swing.JFrame implements MouseListener {
               Class.forName("com.mysql.cj.jdbc.Driver"); 
                Connection con=DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);  
             Statement stmt1=con.createStatement();
-            ResultSet count = stmt1.executeQuery("select count(*) from Starred");
+            ResultSet count = stmt1.executeQuery("select count(*) from Star");
                while(count.next()){
              length = count.getInt("count(*)");
                  }
-            System.out.println(length);
           con.close();
         }catch(Exception event){
             System.out.println(event);
@@ -231,7 +230,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
            try{  
           Class.forName("com.mysql.cj.jdbc.Driver");  
            Connection con=DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);  
-            Statement stmt=con.createStatement();  ResultSet rs=stmt.executeQuery("select * from Starred");
+            Statement stmt=con.createStatement();  ResultSet rs=stmt.executeQuery("select * from Star");
              
             sub = new String[length];
              
