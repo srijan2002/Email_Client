@@ -52,13 +52,15 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(210, 246, 253));
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 985));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(169, 0, 255));
         jLabel3.setText("Subject :-");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(169, 0, 255));
         jLabel4.setText("Body :-");
 
         jScrollPane1.setBorder(null);
@@ -67,7 +69,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         jScrollPane1.setOpaque(false);
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(245, 246, 247));
+        jTextArea1.setBackground(new java.awt.Color(230, 230, 230));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextArea1.setLineWrap(true);
@@ -80,7 +82,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         jScrollPane2.setOpaque(false);
 
         jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(245, 246, 247));
+        jTextArea2.setBackground(new java.awt.Color(230, 230, 230));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextArea2.setLineWrap(true);
