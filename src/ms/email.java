@@ -76,13 +76,14 @@ public class email extends javax.swing.JFrame implements MouseListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(226, 249, 254));
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 985));
 
-        jPanel5.setBackground(new java.awt.Color(174, 240, 253));
+        jPanel5.setBackground(new java.awt.Color(254, 254, 254));
         jPanel5.setForeground(new java.awt.Color(181, 254, 227));
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(169, 0, 255));
         jLabel8.setText("Search Inbox");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -137,43 +138,53 @@ public class email extends javax.swing.JFrame implements MouseListener {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jTextField1.setBackground(new java.awt.Color(230, 230, 230));
         jTextField1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextField1.setBorder(null);
 
+        jLabel1.setBackground(new java.awt.Color(254, 254, 254));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(169, 0, 255));
         jLabel1.setText("To:-");
 
+        jTextField2.setBackground(new java.awt.Color(230, 230, 230));
         jTextField2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextField2.setText(" ");
         jTextField2.setBorder(null);
 
+        jLabel2.setBackground(new java.awt.Color(254, 254, 254));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(169, 0, 255));
         jLabel2.setText("Subject:-");
 
+        jLabel3.setBackground(new java.awt.Color(254, 254, 254));
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(169, 0, 255));
         jLabel3.setText("Body:-");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 31)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(8, 159, 101));
         jLabel4.setText("Send");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(8, 159, 101));
         jLabel6.setText("Attach");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -202,10 +213,11 @@ public class email extends javax.swing.JFrame implements MouseListener {
         jLabel5.setText(" ");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jPanel9.setBackground(new java.awt.Color(181, 242, 254));
+        jPanel9.setBackground(new java.awt.Color(230, 230, 230));
         jPanel9.setForeground(new java.awt.Color(181, 254, 227));
 
         jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(154, 36, 213));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Starred");
 
@@ -226,6 +238,7 @@ public class email extends javax.swing.JFrame implements MouseListener {
                 .addContainerGap())
         );
 
+        jTextArea1.setBackground(new java.awt.Color(230, 230, 230));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextArea1.setLineWrap(true);
