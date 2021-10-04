@@ -31,6 +31,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
         getList();
         jList2.addMouseListener(this);
         jPanel2.addMouseListener(this);
+       
         
          
     }
@@ -241,7 +242,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
             i++;
             }
              jList2.setModel(model);
-            
+          
          
       con.close();  
        }
@@ -255,6 +256,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
              int n = jList2.getSelectedIndex();
               jTextArea2.setText(sub[n]);
               jTextArea1.setText(body[n]);
+                
             
         }
        
