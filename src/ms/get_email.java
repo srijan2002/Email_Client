@@ -27,7 +27,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.InternetAddress;
 import java.io.*;
+import ms.msg;
 import ms.email;
+import javax.mail.Part;
  
 public class get_email {
     public Properties getServerProperties(String protocol, String host,
@@ -48,6 +50,7 @@ public class get_email {
         properties.setProperty(
                 String.format("mail.%s.socketFactory.port", protocol),
                 String.valueOf(port));
+        properties.setProperty("mail.imaps.partialfetch", "false");
  
         return properties;
     }
@@ -78,15 +81,7 @@ public class get_email {
  
             // fetches new messages from server
             Message[] messages = folderInbox.getMessages(); 
-//            int end = folderInbox.getMessageCount();
-//            int MAX_MESSAGES = 30;
-//            int start = end - MAX_MESSAGES + 1;
-//            Message messages[] = folderInbox.getMessages(start, end);
-			
-			// Reverse the ordering so that the latest comes out first
-//			Message messageReverse[] = reverseMessageOrder(messages);
-            
-            
+            msg.mes = messages;
              int n = messages.length;
             int c=-1;
             for (int i = n-1; i>=n-30; i--) {
@@ -104,6 +99,15 @@ public class get_email {
                   if (msg.isMimeType("multipart/*")) {
                        try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
+//                   for (int j = 0; j < mimeMultipart.getCount(); j++) {
+//    MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
+//    if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+//        // this part is attachment
+//        // code to save attachment...
+//        part.saveFile("/home/srijan/Downloads/" + part.getFileName());
+//        System.out.println("Saved");
+//    }
+//} 
                    body = getTextFromMimeMultipart(mimeMultipart);
                        }catch(IOException e){}
                        }
@@ -126,6 +130,7 @@ public class get_email {
         
        return result;
     }
+     
     
     public String[] downloadEmails(String protocol, String host, String port,
             String userName, String password) {
@@ -207,4 +212,68 @@ public class get_email {
   }catch(IOException e){}
     return result;
 }
+    
+      public void getAttach(String protocol, String host, String port,
+            String userName, String password,int index) {
+          
+          String result[] = new String[2];
+        Properties properties = getServerProperties(protocol, host, port);
+        Session session = Session.getDefaultInstance(properties);
+ 
+        try {
+             
+            // connects to the message store
+            Store store = session.getStore(protocol);
+            store.connect(userName, password);
+               
+            // opens the inbox folder
+            Folder folderInbox = store.getFolder("[Gmail]/All Mail");
+            folderInbox.open(Folder.READ_WRITE);
+ 
+            // fetches new messages from server
+            Message[] messages = folderInbox.getMessages(); 
+            msg.mes = messages;
+             int n = messages.length;
+       
+                    Message msg = messages[n-1-index];
+                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
+                String from = sender.getAddress();
+                          
+                  if (msg.isMimeType("text/plain")) {
+                       
+                  
+                    } 
+                  if (msg.isMimeType("multipart/*")) {
+                       try{
+                   MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
+                   for (int j = 0; j < mimeMultipart.getCount(); j++) {
+                         MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
+                          if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+       
+                           part.saveFile("/home/srijan/Downloads/" + part.getFileName());
+                             System.out.println("Saved");
+                         }
+                   } 
+                   
+                       }catch(IOException e){}
+                       }
+                     
+                    
+                
+            
+            
+            // disconnect
+            folderInbox.close(false);
+            store.close();
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider for protocol: " + protocol);
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store");
+            ex.printStackTrace();
+        }  
+       
+       
+    }
+     
 }

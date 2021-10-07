@@ -59,12 +59,14 @@ public class starred extends javax.swing.JFrame implements MouseListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(217, 248, 254));
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
+        jList2.setBackground(new java.awt.Color(230, 230, 230));
         jList2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(169, 0, 255));
         jLabel3.setText("Subject :-");
 
         jScrollPane3.setBorder(null);
@@ -73,7 +75,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
         jScrollPane3.setOpaque(false);
 
         jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(245, 246, 247));
+        jTextArea2.setBackground(new java.awt.Color(230, 230, 230));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextArea2.setLineWrap(true);
@@ -83,6 +85,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
         jScrollPane3.setViewportView(jTextArea2);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(169, 0, 255));
         jLabel4.setText("Body :-");
 
         jScrollPane1.setBorder(null);
@@ -90,8 +93,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
         jScrollPane1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jScrollPane1.setOpaque(false);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(245, 246, 247));
+        jTextArea1.setBackground(new java.awt.Color(230, 230, 230));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jTextArea1.setLineWrap(true);
@@ -99,6 +101,7 @@ public class starred extends javax.swing.JFrame implements MouseListener {
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(169, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Starred");
 
