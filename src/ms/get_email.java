@@ -30,6 +30,7 @@ import java.io.*;
 import ms.msg;
 import ms.email;
 import javax.mail.Part;
+import java.util.regex.Pattern;
  
 public class get_email {
     public Properties getServerProperties(String protocol, String host,
@@ -88,15 +89,36 @@ public class get_email {
                 c++;
                 if(c==index){
                     Message msg = messages[i];
+                    
+                    
+                    Object content = msg.getContent();
+if (content instanceof Multipart) {
+    Multipart mp = (Multipart) content;
+    for (int j = 0; j < mp.getCount(); j++) {
+        BodyPart bp = mp.getBodyPart(j);
+        if (Pattern
+                .compile(Pattern.quote("text/html"),
+                        Pattern.CASE_INSENSITIVE)
+                .matcher(bp.getContentType()).find()) {
+            // found html part
+             result[1]=((String) bp.getContent());
+        } else {
+            // some other bodypart...
+        }
+    }
+}
+                    
                 InternetAddress sender = (InternetAddress) msg.getFrom()[0];
                 String from = sender.getAddress();
                         String body="";
                         String subject = msg.getSubject();  
-                  if (msg.isMimeType("text/plain")) {
-                      body = msg.getContent().toString();
+                  if (msg.isMimeType("text/plain")&& result[1]==null) {
+                      result[1] = msg.getContent().toString();
+                      System.out.println("plain");
                   
                     } 
                   if (msg.isMimeType("multipart/*")) {
+                      System.out.println("multipart");
                        try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
 //                   for (int j = 0; j < mimeMultipart.getCount(); j++) {
@@ -108,10 +130,10 @@ public class get_email {
 //        System.out.println("Saved");
 //    }
 //} 
-                   body = getTextFromMimeMultipart(mimeMultipart);
+//                   body = getTextFromMimeMultipart(mimeMultipart);
                        }catch(IOException e){}
                        }
-                    result[0]=subject;   result[1]=body;
+                    result[0]=subject;
                     break;
                 }
             }
@@ -200,12 +222,16 @@ public class get_email {
         BodyPart bodyPart = mimeMultipart.getBodyPart(i);
        
         if (bodyPart.isMimeType("text/plain")) {
+            System.out.println("text plain");
             result = result  + bodyPart.getContent();
             break; // without break same text appears twice in my tests
         } else if (bodyPart.isMimeType("text/html")) {
+             System.out.println("text html");
             String html = (String) bodyPart.getContent();
+            System.out.println(html);
             result = result + org.jsoup.Jsoup.parse(html).text();
         } else if (bodyPart.getContent() instanceof MimeMultipart){
+             System.out.println("none");
             result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
         }
     }
@@ -250,18 +276,13 @@ public class get_email {
                          MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
                           if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
        
-                           part.saveFile("/home/shruti/Downloads/" + part.getFileName());
+                           part.saveFile("/home/srijan/Downloads/" + part.getFileName());
                              System.out.println("Saved");
                          }
                    } 
                    
                        }catch(IOException e){}
                        }
-                     
-                    
-                
-            
-            
             // disconnect
             folderInbox.close(false);
             store.close();
