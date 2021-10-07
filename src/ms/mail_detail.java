@@ -3,9 +3,15 @@ package ms;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.*;
 import javax.swing.DefaultListModel;
 import ms.StringConstants;
+import javax.swing.text.html.parser.*;
+import javax.swing.text.html.*;
+import javax.swing.text.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,20 +22,23 @@ import ms.StringConstants;
  *
  * @author srijan
  */
+
+
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
+      
       String sub=""; String body=""; String fro=""; int length=0;
     /**
      * Creates new form mail_detail
      */
-    public mail_detail(String s, String b,String c) {
-        
+    public mail_detail(String s, String b,String c) throws IOException {
         this.sub =s; this.body=b; this.fro=c;
         initComponents();
         jPanel2.addMouseListener(this);
         jTextArea2.setText(s);
         jTextArea1.setText(b);
+        
     }
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
