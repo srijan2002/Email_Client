@@ -276,7 +276,7 @@ if (content instanceof Multipart) {
                          MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
                           if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
        
-                           part.saveFile("/home/srijan/Downloads/" + part.getFileName());
+                           part.saveFile("/home/shruti/Downloads/" + part.getFileName());
                              System.out.println("Saved");
                          }
                    } 

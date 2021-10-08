@@ -44,7 +44,7 @@ import javax.swing.text.*;
 
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
       String sub=""; String body=""; String fro=""; int length=0; int index=0;
-      String save = "/home/srijan/Downloads"; String USER=""; String PASS=""; String x="";
+      String save = "/home/shruti/Downloads"; String USER=""; String PASS=""; String x="";
     /**
      * Creates new form mail_detail
      */
