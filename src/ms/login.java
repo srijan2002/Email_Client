@@ -228,6 +228,7 @@ public class login extends javax.swing.JFrame implements MouseListener {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

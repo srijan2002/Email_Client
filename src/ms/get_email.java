@@ -234,7 +234,7 @@ if (content instanceof Multipart) {
     
       public void getAttach(String protocol, String host, String port,
             String userName, String password,int index) {
-          String save = "/home/srijan/Downloads";
+          String save = "/home/shruti/Downloads";
           String result[] = new String[2];
         Properties properties = getServerProperties(protocol, host, port);
         Session session = Session.getDefaultInstance(properties);
