@@ -63,7 +63,7 @@ public class send_email {
              BodyPart messageBodyPart = new MimeBodyPart();
 
             // Fill the message
-            messageBodyPart.setText(body);
+            messageBodyPart.setContent(body,"text/html");
 
             // Create a multipar message
             Multipart multipart = new MimeMultipart();
@@ -76,11 +76,11 @@ public class send_email {
              multipart.addBodyPart(file);
 
             // Send the complete message parts
-            message.setContent(multipart);
+            message.setContent(multipart,"text/html; charset=utf-8");
              
          }
          else
-             message.setText(body);
+             message.setContent(body,"text/html");
          
          
 

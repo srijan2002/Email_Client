@@ -102,6 +102,7 @@ if (content instanceof Multipart) {
                 .matcher(bp.getContentType()).find()) {
             // found html part
              result[1]=((String) bp.getContent());
+//             System.out.println(result[1]);
         } else {
             // some other bodypart...
         }
@@ -121,23 +122,13 @@ if (content instanceof Multipart) {
                       System.out.println("multipart");
                        try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
-//                   for (int j = 0; j < mimeMultipart.getCount(); j++) {
-//    MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
-//    if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
-//        // this part is attachment
-//        // code to save attachment...
-//        part.saveFile("/home/srijan/Downloads/" + part.getFileName());
-//        System.out.println("Saved");
-//    }
-//} 
-//                   body = getTextFromMimeMultipart(mimeMultipart);
+//                   getTextFromMimeMultipart(mimeMultipart);
                        }catch(IOException e){}
                        }
                     result[0]=subject;
                     break;
                 }
             }
-            
             // disconnect
             folderInbox.close(false);
             store.close();
@@ -222,8 +213,9 @@ if (content instanceof Multipart) {
         BodyPart bodyPart = mimeMultipart.getBodyPart(i);
        
         if (bodyPart.isMimeType("text/plain")) {
-            System.out.println("text plain");
+            
             result = result  + bodyPart.getContent();
+            System.out.println(result);
             break; // without break same text appears twice in my tests
         } else if (bodyPart.isMimeType("text/html")) {
              System.out.println("text html");
@@ -233,6 +225,7 @@ if (content instanceof Multipart) {
         } else if (bodyPart.getContent() instanceof MimeMultipart){
              System.out.println("none");
             result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
+             System.out.println(result);
         }
     }
   }catch(IOException e){}
@@ -241,7 +234,7 @@ if (content instanceof Multipart) {
     
       public void getAttach(String protocol, String host, String port,
             String userName, String password,int index) {
-          
+          String save = "/home/srijan/Downloads";
           String result[] = new String[2];
         Properties properties = getServerProperties(protocol, host, port);
         Session session = Session.getDefaultInstance(properties);
@@ -276,7 +269,7 @@ if (content instanceof Multipart) {
                          MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
                           if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
        
-                           part.saveFile("/home/shruti/Downloads/" + part.getFileName());
+                           part.saveFile(save + part.getFileName());
                              System.out.println("Saved");
                          }
                    } 
