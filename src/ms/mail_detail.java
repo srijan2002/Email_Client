@@ -168,7 +168,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         jEditorPane1.setBackground(new java.awt.Color(254, 254, 254));
         jScrollPane3.setViewportView(jEditorPane1);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/home/shruti/Desktop/standing2 (1).png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ms/standing2 (1).png"))); // NOI18N
         jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
