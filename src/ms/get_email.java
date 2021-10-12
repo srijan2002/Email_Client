@@ -166,9 +166,9 @@ if (content instanceof Multipart) {
             for (int i = n-1; i>=n-30; i--) {
                 Message msg = messages[i];
                 
-                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
-                String from = sender.getAddress();
-                result[n-i-1]=from;
+//                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
+//                String from = sender.getAddress();
+                result[n-i-1]=msg.getSubject();
                
             }
             
@@ -234,7 +234,7 @@ if (content instanceof Multipart) {
     
       public void getAttach(String protocol, String host, String port,
             String userName, String password,int index) {
-          String save = "/home/shruti/Downloads";
+          String save = "/home/srijan/Downloads";
           String result[] = new String[2];
         Properties properties = getServerProperties(protocol, host, port);
         Session session = Session.getDefaultInstance(properties);
