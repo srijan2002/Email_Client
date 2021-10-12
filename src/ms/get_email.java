@@ -166,9 +166,9 @@ if (content instanceof Multipart) {
             for (int i = n-1; i>=n-30; i--) {
                 Message msg = messages[i];
                 
-                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
-                String from = sender.getAddress();
-                result[n-i-1]=from;
+//                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
+//                String from = sender.getAddress();
+                result[n-i-1]=msg.getSubject();
                
             }
             
