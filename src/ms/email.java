@@ -21,6 +21,7 @@ import java.sql.*;
 import java.io.*;
 import javax.swing.SwingWorker;
 import ms.msg;
+import javax.swing.border.EmptyBorder;
 import javax.swing.text.Style;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -527,6 +528,8 @@ public class email extends javax.swing.JFrame implements MouseListener {
             DefaultListModel model = new DefaultListModel();
           for(int i=0;i<data.length;i++){
              if(data[i]==null) break;
+             jList2.setFixedCellHeight(75);
+             jList2.setBackground(new java.awt.Color(247, 233, 255));
            model.addElement(data[i]);
             jLabel9.setText("");
          jLabel9.paintImmediately(jLabel9.getVisibleRect());

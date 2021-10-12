@@ -44,7 +44,7 @@ import javax.swing.text.*;
 
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
       String sub=""; String body=""; String fro=""; int length=0; int index=0;
-      String save = "/home/shruti/Downloads"; String USER=""; String PASS=""; String x="";
+      String save = "/home/srijan/Downloads"; String USER=""; String PASS=""; String x="";
     /**
      * Creates new form mail_detail
      */
@@ -58,6 +58,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         if(body==null)
             body=" ";
         jEditorPane1.setContentType("text/html");
+//        String text  = body.replaceAll("(?i)<style.*?>.*?</style>", "");
         x ="<html><body>"+body+"</body></html>";
 //             x=body;
         jEditorPane1.setText(x);
