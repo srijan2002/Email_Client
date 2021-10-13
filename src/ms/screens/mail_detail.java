@@ -1,4 +1,4 @@
-package ms;
+package ms.screens;
 
 
 import java.awt.event.MouseEvent;
@@ -30,6 +30,8 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.text.html.parser.*;
 import javax.swing.text.html.*;
 import javax.swing.text.*;
+import ms.StringConstants;
+import ms.services.get_email;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -44,7 +46,7 @@ import javax.swing.text.*;
 
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
       String sub=""; String body=""; String fro=""; int length=0; int index=0;
-      String save = "/home/srijan/Downloads"; String USER=""; String PASS=""; String x="";
+      String save = "/home/srijan/Downloads/"; String USER=""; String PASS=""; String x="";
     /**
      * Creates new form mail_detail
      */
@@ -52,18 +54,22 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         
         this.sub =s; this.body=b; this.fro=c; this.index=i; this.USER=user;this.PASS=pass;
         initComponents();   
+        get_email g = new get_email();
         jPanel2.addMouseListener(this);
         jPanel3.addMouseListener(this);
-        jTextArea2.setText(s);
-        if(body==null)
+         if(body==null)
             body=" ";
         jEditorPane1.setContentType("text/html");
-//        String text  = body.replaceAll("(?i)<style.*?>.*?</style>", "");
-        x ="<html><body>"+body+"</body></html>";
+        String text  = body.replaceAll("(?i)<style.*?>.*?</style>", "");
+        x ="<html><body>"+text+"</body></html>";
 //             x=body;
         jEditorPane1.setText(x);
          StyleSheet css = ((HTMLEditorKit)jEditorPane1.getEditorKit()).getStyleSheet();
         Style style = css.getStyle("body");
+        jPanel2.setVisible(getList());
+        jPanel3.setVisible(g.attachName("imap", "imap.gmail.com", "993", USER, PASS,index));
+        jTextArea2.setText(s);
+       
         
     }
   
@@ -167,6 +173,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
 
         jEditorPane1.setEditable(false);
         jEditorPane1.setBackground(new java.awt.Color(254, 254, 254));
+        jEditorPane1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jScrollPane3.setViewportView(jEditorPane1);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ms/standing2 (1).png"))); // NOI18N
@@ -304,7 +311,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
 //      System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
        
 //         System.out.println(body);
-           if(getList()){
+//           if(getList()){
                 x = x.replace("'", "\\'");
                 String sqlInsert = "INSERT INTO Star (name,sub,body)" + "VALUES ('"+ fro+"', '"+sub+"', '"+x+"')";
          int countInserted = stmt.executeUpdate(sqlInsert);
@@ -312,9 +319,9 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
                  jLabel2.setText("Email is Starred Successfully");
             }
                
-           }
-           else
-             jLabel2.setText("Email is already Starred");  
+//           }
+//           else
+//             jLabel2.setText("Email is already Starred");  
       con.close();  
        }
         catch(Exception event){ System.out.println(event);}  

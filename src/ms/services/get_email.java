@@ -1,4 +1,4 @@
-package ms;
+package ms.services;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,10 +27,10 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.InternetAddress;
 import java.io.*;
-import ms.msg;
-import ms.email;
+
 import javax.mail.Part;
 import java.util.regex.Pattern;
+import ms.msg;
  
 public class get_email {
     public Properties getServerProperties(String protocol, String host,
@@ -234,7 +234,7 @@ if (content instanceof Multipart) {
     
       public void getAttach(String protocol, String host, String port,
             String userName, String password,int index) {
-          String save = "/home/srijan/Downloads";
+          String save = "/home/srijan/Downloads/";
           String result[] = new String[2];
         Properties properties = getServerProperties(protocol, host, port);
         Session session = Session.getDefaultInstance(properties);
@@ -268,7 +268,7 @@ if (content instanceof Multipart) {
                    for (int j = 0; j < mimeMultipart.getCount(); j++) {
                          MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
                           if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
-       
+                  
                            part.saveFile(save + part.getFileName());
                              System.out.println("Saved");
                          }
@@ -288,6 +288,66 @@ if (content instanceof Multipart) {
         }  
        
        
+    }
+       public boolean attachName(String protocol, String host, String port,
+            String userName, String password,int index) {
+          String save = "/home/srijan/Downloads/";
+          String res ="";
+      
+        Properties properties = getServerProperties(protocol, host, port);
+        Session session = Session.getDefaultInstance(properties);
+ 
+        try {
+             
+            // connects to the message store
+            Store store = session.getStore(protocol);
+            store.connect(userName, password);
+               
+            // opens the inbox folder
+            Folder folderInbox = store.getFolder("[Gmail]/All Mail");
+            folderInbox.open(Folder.READ_WRITE);
+ 
+            // fetches new messages from server
+            Message[] messages = folderInbox.getMessages(); 
+            msg.mes = messages;
+             int n = messages.length;
+       
+                    Message msg = messages[n-1-index];
+                InternetAddress sender = (InternetAddress) msg.getFrom()[0];
+                String from = sender.getAddress();
+                          
+                  if (msg.isMimeType("text/plain")) {
+                       
+                  
+                    } 
+                  if (msg.isMimeType("multipart/*")) {
+                       try{
+                   MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
+                   for (int j = 0; j < mimeMultipart.getCount(); j++) {
+                         MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(j);
+                          if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+                  
+                            
+                         }
+                          res=part.getFileName();
+                   } 
+                   
+                       }catch(IOException e){}
+                       }
+            // disconnect
+            folderInbox.close(false);
+            store.close();
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider for protocol: " + protocol);
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store");
+            ex.printStackTrace();
+        }  
+       if(res==null)
+       return false;
+       else
+           return true;
     }
      
 }

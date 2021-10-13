@@ -1,4 +1,4 @@
-package ms;
+package ms.screens;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,6 +11,7 @@ package ms;
  * @author srijan
  */
  
+import ms.services.send_email;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
@@ -31,6 +32,9 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.Element;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
+import ms.services.file_picker;
+import ms.services.get_email;
+import ms.send_email;
  
 public class email extends javax.swing.JFrame implements MouseListener {
     
