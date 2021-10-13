@@ -1,4 +1,4 @@
-package ms;
+package ms.services;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ms;
+package ms.screens;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,6 +13,7 @@ import java.awt.*;
 import javax.swing.text.Style;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import ms.StringConstants;
 import ms.StringConstants;
 /**
  *
