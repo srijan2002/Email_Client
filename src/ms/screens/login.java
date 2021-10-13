@@ -1,4 +1,4 @@
-package ms;
+package ms.screens;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,6 +10,7 @@ package ms;
  *
  * @author srijan
  */
+import ms.screens.email;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
