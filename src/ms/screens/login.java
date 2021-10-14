@@ -155,7 +155,7 @@ public class login extends javax.swing.JFrame implements MouseListener {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ms/illustration_adobespark.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/illustration_adobespark.png"))); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(169, 0, 255));
 

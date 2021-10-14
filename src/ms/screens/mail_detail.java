@@ -46,7 +46,7 @@ import ms.services.get_email;
 
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
       String sub=""; String body=""; String fro=""; int length=0; int index=0;
-      String save = "/home/srijan/Downloads/"; String USER=""; String PASS=""; String x="";
+      String save = "/home/shruti/Downloads/"; String USER=""; String PASS=""; String x="";
     /**
      * Creates new form mail_detail
      */
@@ -176,7 +176,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         jEditorPane1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jScrollPane3.setViewportView(jEditorPane1);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ms/standing2 (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/standing2 (1).png"))); // NOI18N
         jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
