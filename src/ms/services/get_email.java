@@ -102,9 +102,9 @@ if (content instanceof Multipart) {
                 .matcher(bp.getContentType()).find()) {
             // found html part
              result[1]=((String) bp.getContent());
-//             System.out.println(result[1]);
         } else {
-            // some other bodypart...
+             
+            
         }
     }
 }
@@ -115,14 +115,15 @@ if (content instanceof Multipart) {
                         String subject = msg.getSubject();  
                   if (msg.isMimeType("text/plain")&& result[1]==null) {
                       result[1] = msg.getContent().toString();
-                      System.out.println("plain");
+//                      System.out.println("plain");
                   
                     } 
                   if (msg.isMimeType("multipart/*")) {
-                      System.out.println("multipart");
+//                      System.out.println("multipart");
                        try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
-//                   getTextFromMimeMultipart(mimeMultipart);
+                      if(result[1]==null)
+                  result[1]= getTextFromMimeMultipart(mimeMultipart);
                        }catch(IOException e){}
                        }
                     result[0]=subject;
@@ -234,7 +235,7 @@ if (content instanceof Multipart) {
     
       public void getAttach(String protocol, String host, String port,
             String userName, String password,int index) {
-          String save = "/home/shruti/Downloads/";
+          String save = "/home/srijan/Downloads/";
           String result[] = new String[2];
         Properties properties = getServerProperties(protocol, host, port);
         Session session = Session.getDefaultInstance(properties);
