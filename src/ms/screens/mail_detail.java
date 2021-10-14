@@ -60,9 +60,10 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
          if(body==null)
             body=" ";
         jEditorPane1.setContentType("text/html");
-        String text  = body.replaceAll("(?i)<style.*?>.*?</style>", "");
+        String text  = body.replaceAll("<style([\\s\\S]+?)</style>", "");
         x ="<html><body>"+text+"</body></html>";
 //             x=body;
+//         System.out.println(x);
         jEditorPane1.setText(x);
          StyleSheet css = ((HTMLEditorKit)jEditorPane1.getEditorKit()).getStyleSheet();
         Style style = css.getStyle("body");
