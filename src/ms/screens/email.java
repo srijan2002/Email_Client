@@ -34,7 +34,6 @@ import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import ms.services.file_picker;
 import ms.services.get_email;
-import ms.send_email;
  
 public class email extends javax.swing.JFrame implements MouseListener {
     

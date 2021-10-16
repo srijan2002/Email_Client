@@ -23,7 +23,7 @@ public class send_email {
     
     String to,from,username,password,sub,body;  String path="";
     
-    send_email(String t,String fr,String user,String pass, String s, String b, String p){
+    public send_email(String t,String fr,String user,String pass, String s, String b, String p){
         to=t; from = fr; username=user;password=pass; sub=s;body=b; path=p;
     }
     
