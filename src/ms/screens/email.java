@@ -38,7 +38,7 @@ import ms.services.get_email;
 public class email extends javax.swing.JFrame implements MouseListener {
     
     String path="";  String name = "";   String USER; String PASS;
-    String data[]=new String[30];
+    String data[]=new String[30]; 
 
     /**
      * Creates new form email
@@ -131,6 +131,12 @@ public class email extends javax.swing.JFrame implements MouseListener {
 
         jList2.setBackground(new java.awt.Color(230, 230, 230));
         jList2.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList2);
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
@@ -407,9 +413,9 @@ public class email extends javax.swing.JFrame implements MouseListener {
                                         .addGap(92, 92, 92)
                                         .addComponent(jLabel3))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(51, 51, 51)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -466,6 +472,10 @@ public class email extends javax.swing.JFrame implements MouseListener {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -549,6 +559,7 @@ public class email extends javax.swing.JFrame implements MouseListener {
           mail_detail mail = new mail_detail(res[0],res[1],data[jList2.getSelectedIndex()],jList2.getSelectedIndex(),USER,PASS);
           mail.setVisible(true);
       }
+      
       if(e.getSource()==jPanel9){
           star st = new star(); st.setVisible(true);
       }

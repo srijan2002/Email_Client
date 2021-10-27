@@ -46,7 +46,7 @@ import ms.services.get_email;
 
 public class mail_detail extends javax.swing.JFrame implements MouseListener {
       String sub=""; String body=""; String fro=""; int length=0; int index=0;
-      String save = "/home/shruti/Downloads/"; String USER=""; String PASS=""; String x="";
+      String save = "/home/srijan/Downloads/"; String USER=""; String PASS=""; String x="";
     /**
      * Creates new form mail_detail
      */
@@ -62,14 +62,15 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
         jEditorPane1.setContentType("text/html");
         String text  = body.replaceAll("<style([\\s\\S]+?)</style>", "");
         x ="<html><body>"+text+"</body></html>";
-//             x=body;
-//         System.out.println(x);
+      
+ 
         jEditorPane1.setText(x);
+         jTextArea2.setText(sub);
          StyleSheet css = ((HTMLEditorKit)jEditorPane1.getEditorKit()).getStyleSheet();
         Style style = css.getStyle("body");
         jPanel2.setVisible(getList());
         jPanel3.setVisible(g.attachName("imap", "imap.gmail.com", "993", USER, PASS,index));
-        jTextArea2.setText(s);
+       
        
         
     }
@@ -191,7 +192,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,11 +224,11 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,11 +309,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
  
      Statement stmt=con.createStatement();  
      ResultSet rs=stmt.executeQuery("select * from Star");  
-//      while(rs.next())  
-//      System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-       
-//         System.out.println(body);
-//           if(getList()){
+ 
                 x = x.replace("'", "\\'");
                 String sqlInsert = "INSERT INTO Star (name,sub,body)" + "VALUES ('"+ fro+"', '"+sub+"', '"+x+"')";
          int countInserted = stmt.executeUpdate(sqlInsert);
@@ -320,9 +317,7 @@ public class mail_detail extends javax.swing.JFrame implements MouseListener {
                  jLabel2.setText("Email is Starred Successfully");
             }
                
-//           }
-//           else
-//             jLabel2.setText("Email is already Starred");  
+ 
       con.close();  
        }
         catch(Exception event){ System.out.println(event);}  

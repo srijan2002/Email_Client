@@ -36,8 +36,9 @@ public class send_email {
       props.put("mail.smtp.host", host);
       props.put("mail.smtp.port", "587");
       
+      
       Session session = Session.getInstance(props,
-      new javax.mail.Authenticator() {
+      new Authenticator() {
          protected PasswordAuthentication getPasswordAuthentication() {
             return new PasswordAuthentication(username, password);
          }
@@ -48,7 +49,9 @@ public class send_email {
          Message message = new MimeMessage(session);
 
          // Set From: header field of the header.
+         
          message.setFrom(new InternetAddress(from));
+         
 
          // Set To: header field of the header.
          message.setRecipients(Message.RecipientType.TO,
@@ -74,7 +77,6 @@ public class send_email {
             file.attachFile(path);
              
              multipart.addBodyPart(file);
-
             // Send the complete message parts
             message.setContent(multipart,"text/html; charset=utf-8");
              
@@ -86,6 +88,7 @@ public class send_email {
 
          // Send message
          Transport.send(message);
+         
           
 //         jLabel5.setText("Sent message successfully....");
 //         jLabel5.paintImmediately(jLabel5.getVisibleRect());
@@ -100,4 +103,4 @@ public class send_email {
     
       
     }
-}
+
