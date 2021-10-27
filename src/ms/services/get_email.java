@@ -84,22 +84,21 @@ public class get_email {
             Message[] messages = folderInbox.getMessages(); 
             msg.mes = messages;
              int n = messages.length;
-            int c=-1;
-            for (int i = n-1; i>=n-30; i--) {
-                c++;
-                if(c==index){
-                    Message msg = messages[i];
+//            int c=-1;
+//            for (int i = n-1; i>=n-30; i--) {
+//                c++;
+//                if(c==index){
+                    Message msg = messages[n-1-index];
                     
+                    
+//---------------------HTML Extraction-----------------------                    
                     
                     Object content = msg.getContent();
 if (content instanceof Multipart) {
     Multipart mp = (Multipart) content;
     for (int j = 0; j < mp.getCount(); j++) {
         BodyPart bp = mp.getBodyPart(j);
-        if (Pattern
-                .compile(Pattern.quote("text/html"),
-                        Pattern.CASE_INSENSITIVE)
-                .matcher(bp.getContentType()).find()) {
+        if (Pattern.compile(Pattern.quote("text/html"), Pattern.CASE_INSENSITIVE).matcher(bp.getContentType()).find()) {
             // found html part
              result[1]=((String) bp.getContent());
         } else {
@@ -115,11 +114,9 @@ if (content instanceof Multipart) {
                         String subject = msg.getSubject();  
                   if (msg.isMimeType("text/plain")&& result[1]==null) {
                       result[1] = msg.getContent().toString();
-//                      System.out.println("plain");
                   
                     } 
                   if (msg.isMimeType("multipart/*")) {
-//                      System.out.println("multipart");
                        try{
                    MimeMultipart mimeMultipart = (MimeMultipart) msg.getContent();
                       if(result[1]==null)
@@ -127,9 +124,9 @@ if (content instanceof Multipart) {
                        }catch(IOException e){}
                        }
                     result[0]=subject;
-                    break;
-                }
-            }
+                     
+//                }
+//            }
             // disconnect
             folderInbox.close(false);
             store.close();

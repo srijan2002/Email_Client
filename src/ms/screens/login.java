@@ -275,7 +275,8 @@ public class login extends javax.swing.JFrame implements MouseListener {
         try {
           
          Store store = session.getStore("imap");
-            store.connect(jTextField1.getText(), jPasswordField1.getText());
+            store.connect(jTextField1.getText(), jPasswordField1.getText());  
+            
          login ob = new login(); email ob1 =new email(jTextField1.getText(),jPasswordField1.getText());
          ob1.setVisible(true);ob.setVisible(false);
          
